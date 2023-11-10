@@ -1,0 +1,73 @@
+<h2><% @product.name%></h2>
+<%if user_signed_in? && current_user.is_admin%>
+<%= link_to "Add Products", new_product_path %>
+
+<%=link_to "edit", edit_product_path(@product.id)%>
+<%= link_to 'delete', product_path(@product.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
+<%end%>
+<p>Price : <%=@product.price%></p>
+<p>Descrption : <%=@product.descrption%></p>
+<p>Code_eligibility : <%=@product.code_eligibility%></p>
+<p>Category_id: <%=@product.category_id%></p>
+<p>Stock: <%=@product.stock%></p>
+<p>Category  : <%= Category.find(@product.category_id).name%></p>
+<p> Sub Category: <%=  link_to @product.sub_category.name%> </p> 
+      <%=form_for @cart_line_item do |f| %>
+      <%= f.label :quantity%><br/>
+      <%=f.select :quantity,[1,2,3,4,5]%>
+      <%=f.hidden_field :product_id, value: @product.id%><br/>
+<%=f.submit "Add To Cart"%>
+     
+
+
+      <%#= f.hidden_field :quantity, value:"1" %>
+     <%end%>
+     
+     
+     
+     <h2> Reviews : ( <%= @product.reviews.length %>    )</h2>
+           <ol>
+           <%@product.reviews.each do |review|%>
+           <li>
+          <%=review.user.email%> rated <%="*" * review.rating%> <br/>
+             <%=review.title%>--<%=review.body%> on <%=review.created_at%>
+           <% if user_signed_in? && review.user_id == current_user.id %>
+           <%=link_to "delete"%>
+           </li>
+           <%end%>
+           </ol>        
+   <%end%>
+
+    <h2> Add Review</h2>
+    
+    <%= form_for @review do |f| %>
+        <%=f.label :rating %><br/>
+         <%= f.radio_button :rating, 1 %>1
+         <%= f.radio_button :rating, 2 %>2
+         <%= f.radio_button :rating, 3 %>3
+         <%= f.radio_button :rating, 4 %>4
+         <%= f.radio_button :rating, 5 %>5
+        <br/>
+          <%=f.label :title %> <br/>
+        <%=f.text_field :title%><br/>
+
+         <%=f.label :body %><br/>
+         <%=f.text_area :body %><br/>
+             
+             <%=f.label :product_id %><br/>
+             <%=f.collection_select :product_id,Product.all, :id, :name %> <br/>
+             <%=f.label :user_id %><br/>
+             <%= f.collection_select :user_id, User.all, :id, :email %><br/>
+          
+
+
+
+
+          <%= f.submit%>
+        
+
+    <%end%>
+
+<%= link_to "back", products_path %>
+
+<!-- <%#sub_category_path(@product.sub_category_id)> -->

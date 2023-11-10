@@ -1,0 +1,16 @@
+ <h2>Listing Categories : <%= @categories.size %> </h2>
+<%if @categories.empty?%>
+<p>Categories not yet added</p>
+<%else%>
+  <ol>
+<% @categories.each do |category|%>
+<li> <%=link_to category.name, category_path(category.id)%> 
+ <%#= link_to "show", category_path(category.id)%> 
+</li>
+<% end %>
+</ol>
+<%end%>
+<% if user_signed_in? && current_user.is_admin%>
+<%= link_to "Add Category(best)", new_category_path %>
+<a href="/categories/new"> Add Category</a>   
+<%end%>

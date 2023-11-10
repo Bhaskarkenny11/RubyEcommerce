@@ -1,0 +1,21 @@
+<h2>edit Category</h2
+><%= form_for @category do |f| %>
+        <%= @category.errors %> 
+     <% if @category.errors.any? %>
+        <h3>Errors:</h3>
+        <ul>
+        <% @category.errors.full_messages.each  do |msg| %>
+        <li> <%= msg %> </li>
+        <% end %>
+        </ul>
+        <%end%>
+       
+<%# <label>Name :</label> %>
+        <%=f.label :name %> <br>
+        <%= f.text_field :name %> <br/>
+        <%= f.submit%>
+        <%=link_to "list",categories_path%>
+        <%= link_to "Back", category_path %> 
+        <% end %>
+
+

@@ -1,0 +1,18 @@
+<h1>Dashboard</h1>
+<h4>Total Categories   :  <%=@categories.length %></h4>
+<h4>Total SubCategories:  <%=@sub_categories.length%></h4>
+<h4>Total Products     :  <%=@products.length%> <%= link_to "export(XLS)",products_path(format: "xls")%></h4>
+<h4>Total Orders       :  <%=@orders.length%></h4>
+<h4>Total Users        :  <%=@users.length%></h4>
+<h4>Total Reviews      :  <%=@reviews.length%></h4>
+
+<% data_categories={} %>
+<%= @categories.each do |category| 
+  data_categories[category.name] = category.products.length    
+   end %>
+   <%= data_categories %>
+   <%#= pie_chart Yogurt.group(:flavor).count %>
+   <%= pie_chart (data_categories) %>
+   <%=bar_chart (data_categories)%>
+   <%=column_chart (data_categories)%>
+   <%= geo_chart ({"India"=> 100,"Russia"=>250 })%>

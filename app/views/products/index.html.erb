@@ -1,0 +1,17 @@
+<h2>Listing Products</h2>
+<%if user_signed_in? && current_user.is_admin%>
+<%= link_to "Add Products", new_product_path %>
+<%end%>
+<%if @products.empty?%>
+<p>NO PRODUCTS FOUND</p>
+<% else %>
+<ul>
+<% @products.each do |product|%>
+<li>
+<%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>
+<%= link_to 'delete', product_path(product), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
+<button type="button" class="btn btn-outline-success"><%=link_to "edit", edit_product_path(product.id)%></button>
+</li>
+<% end %>
+</ul>
+<%end%>

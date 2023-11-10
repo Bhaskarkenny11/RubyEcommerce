@@ -1,0 +1,26 @@
+<h2> <%= @category.name %> </h2>
+<%# if @products.empty? %>
+<%#<p>no products found</p> 
+<%#else%>
+<%#ol>
+<%# #@products.each do |product| %> 
+<%#<li><%#= link_to product.name ,product_path(product.id)%> <%#INR <%=  product.price %> <%#SSSSSS/li>
+
+<%#end%>
+<%#</ol>
+<%end%> 
+<% @category.sub_categories.each do |sub_category|%>
+<h3><%= sub_category.name.upcase%><h3>
+<ul>
+<% sub_category.products.each do |product|%>
+<li>
+<%=  product.name %>
+</li>
+<%end%>
+</ul>
+<%end%>
+<%= link_to "Back", categories_path %> <%= link_to "edit",edit_category_path(@category.id)%> | 
+<%= link_to 'delete', category_path(@category.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
+<%# <%= link_to "delete", category_path(@category.id), method: :delete %> 
+
+

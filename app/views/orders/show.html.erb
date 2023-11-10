@@ -1,0 +1,37 @@
+<h2>your order has been placed</h2>
+<p>Order #: <%= @order.order_number %></p>
+<p>Order Date:<%= @order.order_date%></p>
+<p>Total:<%=@order.total_amount%></p>
+
+<h2>Your Line items</h2>
+<table class="table",border="1">
+<thead>
+<tr>
+<th>#</th>
+<th>product</th>
+<th>price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody>
+<% sum = 0 %>
+<% @order.order_products.each_with_index do |order_product,index|%>
+<tr>
+<td><%=index + 1%></td>
+<td> <%=order_product.product.name%> </td>
+<td><%=order_product.price%></td>
+<td><%=order_product.quantity%></td>
+<% total =order_product.price * order_product.quantity %>
+ <td><%= total %>
+<!--
+<%#sum += total %>
+</td> -->
+
+</tr>
+<%end%>
+</tbody>
+
+</table>
+<!--<b>Total : <%=sum %></b> ->

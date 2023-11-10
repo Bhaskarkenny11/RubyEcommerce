@@ -1,0 +1,51 @@
+<h2>Edit Product</h2>
+<%= form_with(model: @product, data: { turbo: false }) do |f| %>
+<%# <%= form_for @product do |f| %> 
+<% if @product.errors.any? %>
+
+<%# <%binding.pry%> 
+<h3>ERRORS</h3>
+<ul>
+<%=@product.errors.full_messages.each do |msg|%>
+<%#binding.pry%>
+<li> <%= msg %> </li>
+<%#binding.pry%>
+<%end%>
+</ul>
+<%end%>
+
+<%#= f.label :name%><br>
+<%#= f.text_field :name%><br>
+<%#= f.submit%>
+<%#=link_to"back",product_path%>
+<%#=link_to"list",products_path%>
+<%#end%>
+<%= f.label :name %> <br/>
+<%= f.text_field :name %><br/>
+
+ <%= f.label :descrption %><br/>
+ <%= f.text_area :descrption %><br/>
+
+ <%= f.label :category_id %><br/>
+ <%= f.collection_select :category_id,Category.all, :id,:name, prompt: "Select Category" %><br/>
+
+ <%=f.label :sub_category_id %><br/>
+ <%=f.collection_select :sub_category_id,SubCategory.all, :id,:name, prompt: "Select SubCategory" %><br/>
+
+
+
+  <%= f.label :stock %><br/>
+ <%= f.text_field :stock %><br/>
+
+  <%= f.label :code_eligibility %>
+ <%= f.check_box :code_eligibility %><br/>
+
+  <%= f.label :price %><br/>
+<%=f.text_field :price%><br/>
+
+ <%= f.label :image_url %><br/>
+<%=f.text_field :image_url%><br/>
+
+<%= f.submit %>
+
+<% end %>
