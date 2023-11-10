@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
          # @order.order_date=Date.today
         # @order.total_amount=1             #before_validation method in model 
         # @order.order_number="ybk#{Random.rand(100)}"
-        binding.pry
+        #binding.pry
         if @order.save
          redirect_to order_path(@order.id), notice: "your order has been created"
         end
