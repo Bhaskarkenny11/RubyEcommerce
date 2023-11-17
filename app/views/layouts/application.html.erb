@@ -21,7 +21,7 @@
       <%= link_to "DASHBOARD",dashboard_index_path, class:"btn btn-default"%>
       <%end%>
 
-      | <%=link_to "Your Cart #{current_user.cart_line_items.length}",cart_line_items_path,class:"btn btn-default"%> | <%=link_to "Your Ordetrs",orders_path,class:"btn btn-default"%> | <%= link_to "Account Setting",edit_user_registration_path,class:"btn btn-default" %> | <%= link_to "logout",destroy_user_session_path,data: {turbo_method: :delete, turbo_confirm: 'are you sure'},class:"btn btn-default" %><br/>
+      | <%=link_to "Your Cart #{current_user.cart_line_items.length}",cart_line_items_path,class:"btn btn-default"%> | <%=link_to "Your Orders",orders_path,class:"btn btn-default"%> | <%= link_to "Account Setting",edit_user_registration_path,class:"btn btn-default" %> | <%= link_to "logout",destroy_user_session_path,data: {turbo_method: :delete, turbo_confirm: 'are you sure'},class:"btn btn-default" %><br/>
      <% else %>
      <%= link_to "login",new_user_session_path ,class:"btn btn-default"%> | <%= link_to"Register",new_user_registration_path,class:"btn btn-default" %><br/>
      <%end%>
