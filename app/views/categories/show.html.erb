@@ -10,11 +10,11 @@
 <%#</ol>
 <%end%> 
 <% @category.sub_categories.each do |sub_category|%>
-<h3><%= sub_category.name.upcase%><h3>
+<h3><%= link_to sub_category.name.upcase%><h3>
 <ul>
 <% sub_category.products.each do |product|%>
 <li>
-<%=  product.name %>
+<%= link_to product.name ,product_path(product.id)%>
 </li>
 <%end%>
 </ul>

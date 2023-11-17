@@ -1,16 +1,16 @@
-<h2>edit Category</h2
-><%= form_for @category do |f| %>
-        <%= @category.errors %> 
+<h2>edit Category</h2>
+<%= form_for @category do |f| %>
+        <% @category.errors %> 
      <% if @category.errors.any? %>
         <h3>Errors:</h3>
         <ul>
         <% @category.errors.full_messages.each  do |msg| %>
         <li> <%= msg %> </li>
-        <% end %>
+   <% end %>
         </ul>
-        <%end%>
+ <%end%>
        
-<%# <label>Name :</label> %>
+
         <%=f.label :name %> <br>
         <%= f.text_field :name %> <br/>
         <%= f.submit%>
