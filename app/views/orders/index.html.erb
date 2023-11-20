@@ -1,7 +1,7 @@
 
   <h1>  Orders History</h1>
     <% @orders.each do |order| %>
-        <p>
+      <p>
         Order ID: <%= order.id %>,
         Placed on: <%= order.created_at.to_formatted_s(:long) %>
     </p>

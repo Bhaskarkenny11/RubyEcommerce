@@ -11,6 +11,6 @@
 </ol>
 <%end%>
 <% if user_signed_in? && current_user.is_admin%>
-<%= link_to "Add Category(best)", new_category_path %>
-<a href="/categories/new"> Add Category</a>   
+<%= link_to "Add Category", new_category_path %>
+  
 <%end%>

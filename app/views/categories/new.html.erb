@@ -1,22 +1,18 @@
 <h2>ADD CATEGORY</h2>
-<%# <form action=".." method="post">
-<label>name</label>
-<input type = "text">
-<input type="submit">
-</form> %>
 
-<%= @category.errors.full_messages %>
+
+<% @category.errors.full_messages %>
 <%= form_for @category do |f| %>
   <% if @category.errors.any?%>
-<ul>
-  <% @category.errors.full_messages.each  do |msg| %>
-  <li> <%= msg %> </li>
-   <% end %>
-</ul>
+    <ul>
+      <% @category.errors.full_messages.each  do |msg| %>
+        <li> <%= msg %> </li>
+      <% end %>
+  </ul>
 <%end%>
 
-<%# <label>Name :</label> %>
-<%=f.label :name %> <br>
+
+<%=f.label :name %> <br/>
 <%= f.text_field :name %> <br/>
 <%= f.submit%>
 <% end %>
