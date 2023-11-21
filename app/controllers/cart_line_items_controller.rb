@@ -5,6 +5,11 @@ def index
 @order=Order.new
 end
 
+def show
+   
+    @cart_line_item = current_user.cart_line_items.find(params[:id])
+end
+
 def create
 @cart_line_item=CartLineItem.new(cart_line_item_params)
 @cart_line_item.user_id = current_user.id
