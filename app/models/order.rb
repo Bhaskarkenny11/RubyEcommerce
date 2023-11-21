@@ -13,7 +13,7 @@ class Order < ApplicationRecord
     def set_order_details
         self.order_number = "ybk#{Random.rand(100)}"
         self.order_date = Date.today
-        self.address_id = user_id
+        #self.address_id = user_id
        # self.total_amount = 1
     end
 
