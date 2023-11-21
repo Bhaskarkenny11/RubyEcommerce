@@ -4,13 +4,13 @@
 <%#else%>
 <%#ol>
 <%# #@products.each do |product| %> 
-<%#<li><%#= link_to product.name ,product_path(product.id)%> <%#INR <%=  product.price %> <%#SSSSSS/li>
+<%#<li><%#= link_to product.name ,product_path(product.id)%> <%#INR <%=  product.price %> </li>
 
 <%#end%>
 <%#</ol>
 <%end%> 
 <% @category.sub_categories.each do |sub_category|%>
-<h3><%= link_to sub_category.name.upcase%><h3>
+<h3><%=  sub_category.name.upcase%><h3>
 <ul>
 <% sub_category.products.each do |product|%>
 <li>
