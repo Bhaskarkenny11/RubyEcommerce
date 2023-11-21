@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :categories
   resources :products
-  resources :reviews
+  resources :reviews, only: [:create,:destroy,:edit, :update]
   resources :cart_line_items
   resources :orders
-delete 'products/:id', to: 'products#destroy'
+#delete 'products/:id', to: 'products#destroy'
 root  "products#index"  
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
