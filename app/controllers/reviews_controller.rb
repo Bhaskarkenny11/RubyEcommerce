@@ -19,14 +19,22 @@ class ReviewsController < ApplicationController
     #     @review.destroy
     #     redirect_to root_path, notice: 'Review was successfully destroyed.'
     #  end
+
+    
     def destroy
         @review = Review.find(params[:id])
-        binding.pry
         if @review.destroy
-          redirect_to root_path, notice: 'Review was successfully destroyed.'
+          redirect_to  review_path, notice: 'Review was successfully destroyed.'
         end
       end
-
+      
+    # def destroy
+    #     @review.destroy
+    #     respond_to do |format|
+    #       format.html { redirect_to @product, notice: 'Review was successfully destroyed.' }
+    #       format.json { head :no_content }
+    #     end
+    #   end
 
 
     private

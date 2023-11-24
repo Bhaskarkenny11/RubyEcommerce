@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :categories
   resources :products
-  resources :reviews, only: [:create,:destroy,:edit, :update]
+  #resources :reviews, only: [:create,:destroy,:edit, :update]
+resources :reviews, controller: :reviews, only: [:create, :index, :edit,:destroy] do
+      member do
+        delete :destroy
+      end
+end
   resources :cart_line_items
   resources :orders
 #delete 'products/:id', to: 'products#destroy'
