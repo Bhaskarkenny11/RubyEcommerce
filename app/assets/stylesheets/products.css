@@ -1,32 +1,32 @@
-/* Apply styles to the <h2> element */
+/*
 h2 {
     font-size: 24px;
-    color: #333; /* Text color */
+    color: #333;
     text-align: center;
   }
   
-  /* Apply styles to labels and form elements */
+
   label, input, textarea, select {
     display: block;
     margin-bottom: 10px;
   }
   
-  /* Apply styles to the error messages */
+
   .errors {
     color: red;
   }
   
-  /* Apply styles to buttons */
+ 
   input[type="submit"] {
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
+    background-color: #007bff; 
+    color: #fff; 
     padding: 10px 20px;
     border: none;
     cursor: pointer;
   }
   
-  /* Apply styles to checkboxes */
+
   input[type="checkbox"] {
     margin-right: 5px;
   }
-  
+  */

@@ -1,14 +1,30 @@
 
-  <h1>  Orders History</h1>
-    <% @orders.each do |order| %>
-      <p>
-        Order ID: <%= order.id %>,
-        Placed on: <%= order.created_at.to_formatted_s(:long) %>
-    </p>
-        <% end %>
-        
-        <% if current_user.is_admin? %>
-        <%= link_to "New Order", products_path, class: 'btn btn-primary'%>
-        <% else %>
-        <%= link_to "New Order", products_path, class: 'btn btn-primary', disabled: true %>
-        <% end %>   
+<h2>Orders for <%= Date::MONTHNAMES[Time.now.month] %></h2>
+ <% @orders= current_user.orders %>
+
+<% if @orders.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Order Number</th>
+        <th> Order Nmae</th>
+        <!-- Add more headers for additional details -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+           <td> <%=order.order_number%> </td> 
+           
+          <!-- Add more cells for additional details -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No orders found for this month.</p>
+<% end %>

@@ -1,5 +1,5 @@
 <h2>your order has been placed</h2>
-<p>Order #: <%= @order.order_number %></p>
+<p>Order : #<%= @order.order_number %></p>
 <p>Order Date:<%= @order.order_date%></p>
 <p>Total:<%=@order.total_amount%></p>
 
@@ -7,7 +7,7 @@
 <table class="table",border="1">
     <thead>
         <tr>
-            <th>#</th>
+            <th> # </th>
             <th>product</th>
             <th>price</th>
             <th>Quantity</th>

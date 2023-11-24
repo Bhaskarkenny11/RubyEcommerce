@@ -19,10 +19,13 @@ class OrdersController < ApplicationController
     def show 
         @order=Order.find(params[:id])
     end
+    
 
-        def index 
+        def index
+         
             @orders=Order.all
-            
+            @user=current_user
+            @orders = current_user.orders.where("strftime('%m', created_at) = ?", params[:month].to_i.to_s)
 
         end
 
