@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
     end
 
    def create
-     @product = Product.new(product_params) 
+     @product = Product.new(product_params)
+     @product.image_url.attach(params[:product][:image_url]) if params[:product][:image_url]
     #  binding.pry 
           if @product.save 
           redirect_to product_path(@product.id), notice:"successfully created #{@product.name}"
