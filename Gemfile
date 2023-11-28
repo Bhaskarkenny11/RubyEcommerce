@@ -10,6 +10,7 @@ gem "faker"
 gem "pry"
 gem 'turbo-rails'
 gem "chartkick"
+gem 'image_processing', '~> 1.2'
 
 gem 'hotwire-rails', '~> 0.1.3'
 

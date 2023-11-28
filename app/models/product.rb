@@ -4,7 +4,14 @@ class Product < ApplicationRecord
   has_many :reviews
   has_many :cart_line_items
   has_many :order_products
-  has_one_attached :image_url
+ # has_one_attached :image_url
+  has_one_attached :image_url # this code for many images  do |attachable|
+   # attachable.variant :thumb, resize_to_limit: [300, 300]
+  #end
+
+
+
+
   
     validates_presence_of :name, :descrption, :price, :stock, :category_id,:sub_category_id
     validates_numericality_of :stock, greater_than_or_equal_to: 0

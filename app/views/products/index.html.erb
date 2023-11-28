@@ -13,7 +13,15 @@
 <ul>
 <% @products.each do |product|%>
 <li>
- <%=product.image_url %> <%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>
+<p><%  if product.image_url.attached? %>
+
+  <%= image_tag rails_blob_path(product.image_url,only_path: true)  %>
+  <% else %>  
+   <p>No image available </p>
+  <% end %> </p>
+ 
+ 
+ <%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>
 <%= link_to 'delete', product_path(product), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
 <button type="button" class="btn btn-outline-success"><%=link_to "edit", edit_product_path(product.id)%></button>
 </li>
