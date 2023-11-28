@@ -5,6 +5,9 @@
 <%=link_to "edit", edit_product_path(@product.id)%>
 <%= link_to 'delete', product_path(@product.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
 <%end%>
+<p>image_tag :<%  if @product.image_url.present? %>
+  <%=@product.image_url %>
+  <% end %> </p>
 <p>Price : <%=@product.price%></p>
 <p>Descrption : <%=@product.descrption%></p>
 <p>Code_eligibility : <%=@product.code_eligibility%></p>

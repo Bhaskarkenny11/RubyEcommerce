@@ -13,7 +13,7 @@
 <ul>
 <% @products.each do |product|%>
 <li>
-<%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>
+ <%=product.image_url %> <%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>
 <%= link_to 'delete', product_path(product), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
 <button type="button" class="btn btn-outline-success"><%=link_to "edit", edit_product_path(product.id)%></button>
 </li>
