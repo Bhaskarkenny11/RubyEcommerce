@@ -13,12 +13,13 @@
 <ul>
 <% @products.each do |product|%>
 <li>
-<p><%  if product.image_url.attached? %>
-
-  <%= image_tag rails_blob_path(product.image_url,only_path: true)  %>
+<%  if product.image_url.attached? %>
+<%= link_to product_path(product.id) do %>
+  <%= image_tag rails_blob_path(product.image_url,only_path: true) %>
+  <% end %>
   <% else %>  
    <p>No image available </p>
-  <% end %> </p>
+  <% end %> 
  
  
  <%= link_to product.name, product_path(product.id)%> INR <%= product.price %> --<%= product.category_id%>

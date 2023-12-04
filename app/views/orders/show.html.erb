@@ -23,8 +23,17 @@
             <td> <%=order_product.product.name%> </td>
             <td><%=order_product.price%></td>
             <td><%=order_product.quantity%></td>
-            <% total =order_product.price * order_product.quantity %>
+             <td>
+             <% total =order_product.price * order_product.quantity %>
             <td><%= total %>
+            <p><%  if order_product.product.image_url.attached? %>
+            
+              <%= image_tag rails_blob_path(order_product.product.image_url,only_path: true)  %>
+              <% else %>  
+               <p>No image available </p>
+              <% end %> </p>
+             </td>
+            
 
         </tr>
         <%end%>
