@@ -5,7 +5,7 @@
 <%=link_to "edit", edit_product_path(@product.id)%>
 <%= link_to 'delete', product_path(@product.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
 <%end%>
-<p>image_tag :<%  if @product.image_url.attached? %>
+<p><!--image_tag :--> <%  if @product.image_url.attached? %>
   <%= image_tag rails_blob_path(@product.image_url,only_path: true)  %>
   <% else %>  
    <p>No image available </p>
