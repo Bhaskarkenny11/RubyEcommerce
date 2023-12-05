@@ -11,7 +11,8 @@ resources :reviews, controller: :reviews, only: [:create, :index, :edit,:destroy
         delete :destroy
       end
 end
-  resources :cart_line_items
+  resources :cart_line_items 
+    
   resources :orders
 #delete 'products/:id', to: 'products#destroy'
 root  "products#index"  
@@ -19,4 +20,5 @@ root  "products#index"
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/success", to: "cart_line_items#success"
 end
