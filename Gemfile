@@ -13,6 +13,7 @@ gem "chartkick"
 gem 'image_processing', '~> 1.2'
 
 gem 'hotwire-rails', '~> 0.1.3'
+gem 'razorpay'
 
 # gem "devise", "~> 4.9"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
