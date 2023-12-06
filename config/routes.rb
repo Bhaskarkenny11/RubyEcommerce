@@ -12,7 +12,8 @@ resources :reviews, controller: :reviews, only: [:create, :index, :edit,:destroy
       end
 end
   resources :cart_line_items 
-    
+  get '/checkout', to: 'cart_line_items#checkout'
+  
   resources :orders
 #delete 'products/:id', to: 'products#destroy'
 root  "products#index"  

@@ -13,24 +13,25 @@ if @sum_ >1
     end
 end
 
-# def checkout
-#     @cart_line_items=current_user.cart_line_items
-#     @order=Order.new
-#     @sum_=0
-#     @cart_line_items.each do |cart_line_item|
-#         @total =cart_line_item.product.price * cart_line_item.quantity
-#         @sum_ += @total.to_i
-#     end
-#     if @sum_ >1
-#         @razor_order=Razorpay::Order.create amount:@sum_*100, currency: 'INR', receipt: 'TEST'
-#         end
-#     end
+def checkout
+    @cart_line_items=current_user.cart_line_items
+    @order=Order.new
+    @sum_=0
+    @cart_line_items.each do |cart_line_item|
+        @total =cart_line_item.product.price * cart_line_item.quantity
+        @sum_ += @total.to_i
+    end
+    if @sum_ >1
+        @razor_order=Razorpay::Order.create amount:@sum_*100, currency: 'INR', receipt: 'TEST'
+        end
+    end
     
 
 
 
 def success
  @razor_details
+ @razor_order
 end
 
 def show
@@ -42,7 +43,7 @@ def create
 @cart_line_item=CartLineItem.new(cart_line_item_params)
 @cart_line_item.user_id = current_user.id
     if @cart_line_item.save
-        redirect_to checkout_cart_line_items_path , notice: "you have added product to the cart"
+        redirect_to cart_line_items_path, notice: "you have added product to the cart"
     end
 end
 
