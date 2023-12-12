@@ -209,6 +209,7 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    rufo (0.16.3)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -267,6 +268,7 @@ DEPENDENCIES
   pry
   puma (~> 5.0)
   razorpay
+  rufo
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

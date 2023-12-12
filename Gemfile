@@ -11,7 +11,7 @@ gem "pry"
 gem 'turbo-rails'
 gem "chartkick"
 gem 'image_processing', '~> 1.2'
-
+gem 'rufo'
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'razorpay'
 
