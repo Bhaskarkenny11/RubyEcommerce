@@ -1,7 +1,7 @@
 <h2>your order has been placed</h2>
 <p>Order : #<%= @order.order_number %></p>
-<p>Order Date:<%= @order.order_date%></p>
-<p>Total:<%=@order.total_amount%></p>
+<p>Order Date:<%= @order.order_date %></p>
+<p>Total:<%= @order.total_amount %></p>
 
 <h2>Your Cart Line items</h2>
 <table class="table",border="1">
@@ -17,18 +17,18 @@
 
     <tbody>
         <% sum = 0 %>
-        <% @order.order_products.each_with_index do |order_product,index|%>
+        <% @order.order_products.each_with_index do |order_product, index| %>
         <tr>
-            <td><%=index + 1%></td>
-            <td> <%=order_product.product.name%> </td>
-            <td><%=order_product.price%></td>
-            <td><%=order_product.quantity%></td>
+            <td><%= index + 1 %></td>
+            <td> <%= order_product.product.name %> </td>
+            <td><%= order_product.price.to_i %></td>
+            <td><%= order_product.quantity %></td>
              <td>
-             <% total =order_product.price * order_product.quantity %>
-            <td><%= total %>
-            <p><%  if order_product.product.image_url.attached? %>
+             <% total = order_product.price.to_i * order_product.quantity %>
+            <td><%= total.to_i %>
+            <p><% if order_product.product.image_url.attached? %>
             
-              <%= image_tag rails_blob_path(order_product.product.image_url,only_path: true)  %>
+              <%= image_tag rails_blob_path(order_product.product.image_url, only_path: true) %>
               <% else %>  
                <p>No image available </p>
               <% end %> </p>
@@ -36,8 +36,8 @@
             
 
         </tr>
-        <%end%>
+        <% end %>
     </tbody>
 
 </table>
-  <!--<b>Total : <%=sum %></b> ->
+  <!--<b>Total : <%= sum %></b> ->

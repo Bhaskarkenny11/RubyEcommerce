@@ -5,7 +5,7 @@ def index
 @order=Order.new
 @sum_=0
 @cart_line_items.each do |cart_line_item|
-    @total =cart_line_item.product.price * cart_line_item.quantity
+    @total =cart_line_item.product.price.to_i * cart_line_item.quantity
     @sum_ += @total.to_i
 end
 if @sum_ >1
@@ -18,7 +18,7 @@ def checkout
     @order=Order.new
     @sum_=0
     @cart_line_items.each do |cart_line_item|
-        @total =cart_line_item.product.price * cart_line_item.quantity
+        @total =cart_line_item.product.price.to_i * cart_line_item.quantity
         @sum_ += @total.to_i
     end
     if @sum_ >1

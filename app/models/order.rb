@@ -16,7 +16,7 @@ class Order < ApplicationRecord
         #self.address_id = user_id
        # self.total_amount = 1
     end
-
+     
 
     def generate_order_products
         cart_line_items = self.user.cart_line_items
