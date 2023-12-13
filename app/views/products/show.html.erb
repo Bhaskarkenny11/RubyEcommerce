@@ -1,76 +1,188 @@
-<h2><% @product.name%></h2>
-<%if user_signed_in? && current_user.is_admin%>
-<%= link_to "Add Products", new_product_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Details</title>
+    <!-- Add your CSS link tag here for external stylesheets -->
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
 
-<%=link_to "edit", edit_product_path(@product.id)%>
-<%= link_to 'delete', product_path(@product.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
-<%end%>
-<p><!--image_tag :--> <%  if @product.image_url.attached? %>
-  <%= image_tag rails_blob_path(@product.image_url,only_path: true)  %>
+      header {
+        background-color: #fff;
+        padding: 10px;
+        text-align: center;
+      }
+
+      section {
+        max-width: 1000px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-info {
+        padding: 5px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .product-info img {
+        max-width: 200px;
+        max-height: 200px;
+        margin-right: 20px;
+      }
+
+      .reviews-section {
+        background-color: #f9f9f9;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+
+      .reviews-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .review-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+      }
+
+      .review-item:last-child {
+        border-bottom: none;
+      }
+
+      .add-review-section {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Add your header content here -->
+      <h1>PRODUCT DETAILS</h1>
+    </header>
+
+    <!-- Product Details Section -->
+    <section>
+      <h2><%= @product.name %></h2>
+<% if user_signed_in? && current_user.is_admin %>
+<%= link_to "Add Products", new_product_path %>  | 
+
+<%= link_to "edit", edit_product_path(@product.id) %> 
+<%= link_to "delete", product_path(@product.id), data: { turbo_method: :delete, turbo_confirm: "are you sure" } %>
+<% end %>
+<p><!--image_tag :--> <% if @product.image_url.attached? %>
+  <%= image_tag rails_blob_path(@product.image_url, only_path: true) %>
   <% else %>  
    <p>No image available </p>
-  <% end %> </p>
-<p>Price : <%=@product.price%></p>
-<p>Descrption : <%=@product.descrption%></p>
-<p>Code_eligibility : <%=@product.code_eligibility%></p>
-<p>Category_id: <%=@product.category_id%></p>
-<p>Stock: <%=@product.stock%></p>
-<p>Category  : <%= Category.find(@product.category_id).name%></p>
-<p> Sub Category: <%=  link_to @product.sub_category.name%> </p> 
-      <%=form_for @cart_line_item do |f| %>
-      <%= f.label :quantity%><br/>
-      <%=f.select :quantity,[1,2,3,4,5]%>
-      <%=f.hidden_field :product_id, value: @product.id%><br/>
-<%=f.submit "Add To Cart"%>
+  <% end %>
+ </p>
 
-     <%end%>
-     
-     
- <h2> Reviews : (<%= @product.reviews.length %>)</h2>
-           <ol>
-                  <%@product.reviews.each do |review|%>
-                  <li>
-                        <%=review.user.email%> rated <%="*" * review.rating%> <br/>
-                        <%=review.title%>--<%=review.body%> on <%=review.created_at%>
-                         <% if user_signed_in? %>
-                         <% if review.user_id == current_user.id %>
-                         <%= link_to 'Delete', review_path(review), data:  {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this review?"} %>
-                        
-                  <%end%>
-                  </li>
-                  <%end%>
-           </ol>        
-   <%end%>
+      <!-- Add to Cart Form -->
+      <%= form_for @cart_line_item do |f| %>
+<%= f.label :quantity %><br/>
+      <%= f.select :quantity, [1, 2, 3, 4, 5] %>
+      <%= f.hidden_field :product_id, value: @product.id %><br/>
 
-    <h2> Add Review</h2>
-    
-    <%= form_for @review do |f| %>
-        <%=f.label :rating %><br/>
+        <!-- Your form fields go here -->
+        <%= f.submit "Add To Cart" %>
+      <% end %>
+
+      <!-- Product Information -->
+      <div class="product-info">
+        <% if @product.image_url.attached? %>
+          <%= image_tag rails_blob_path(@product.image_url, only_path: true), class: "product-image" %>
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+        <table border="none" cellspacing=2 cellpadding=4  >
+         <tr> 
+           <th> price </th>
+           <th> Discrption </th>
+           <th> Code_eligibility </th>
+           <th> Category_id </th>
+         </tr>
+         <tr> 
+         <td> <%= @product.price %>  </td>
+         <td> <%= @product.descrption %>  </td>
+         <td> <%= @product.code_eligibility %></td>
+         <td> <%= @product.category_id %> </td>
+       </tr>
+         </table>
+        <!-- Other product details go here -->
+        <p>Price: <%= @product.price %></p>
+        <p>Description: <%= @product.descrption %></p>
+        <p>Code_eligibility : <%= @product.code_eligibility %></p>
+        <p>Category_id: <%= @product.category_id %></p>
+        <p>Stock: <%= @product.stock %></p>
+        <p>Category  : <%= Category.find(@product.category_id).name %></p>
+        <p> Sub Category: <%= link_to @product.sub_category.name %> </p> 
+        <!-- Add more details as needed -->
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="reviews-section">
+        <h2>Reviews (<%= @product.reviews.length %>)</h2>
+        <ul class="reviews-list">
+          <% @product.reviews.each do |review| %>
+            <li class="review-item">
+              <%= review.user.email %> rated <%= "*" * review.rating %><br />
+              <%= review.title %> -- <%= review.body %> on <%= review.created_at %>
+              <% if user_signed_in? && review.user_id == current_user.id %>
+                <%= link_to "Delete", review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this review?" } %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Add Review Section -->
+      <div class="add-review-section">
+        <h2>Add Review</h2>
+        <%= form_for @review do |f| %>
+          <!-- Your review form fields go here -->
+ <%= f.label :rating %><br/>
          <%= f.radio_button :rating, 1 %>1
          <%= f.radio_button :rating, 2 %>2
          <%= f.radio_button :rating, 3 %>3
          <%= f.radio_button :rating, 4 %>4
          <%= f.radio_button :rating, 5 %>5
         <br/>
-          <%=f.label :title %> <br/>
-        <%=f.text_field :title%><br/>
+          <%= f.label :title %> <br/>
+        <%= f.text_field :title %><br/>
 
-         <%=f.label :body %><br/>
-         <%=f.text_area :body %><br/>
+         <%= f.label :body %><br/>
+         <%= f.text_area :body %><br/>
              
-             <%=f.label :product_id %><br/>
-             <%=f.collection_select :product_id,Product.all, :id, :name %> <br/>
-             <%=f.label :user_id %><br/>
+             <%= f.label :product_id %><br/>
+             <%= f.collection_select :product_id, Product.all, :id, :name %> <br/>
+             <%= f.label :user_id %><br/>
              <%= f.collection_select :user_id, User.all, :id, :email %><br/>
           
 
 
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </section>
 
-          <%= f.submit%>
-        
-
-    <%end%>
-
-<%= link_to "back", products_path %>
-
-<!-- <%#sub_category_path(@product.sub_category_id)> -->
+    <!-- Back Link -->
+    <%= link_to "Back", products_path %>
+  </body>
+</html>

@@ -1,37 +1,109 @@
-<p>Hello <%=@order.user.email %></p>
-<h2>your order has been placed</h2>
-<p>Order #: <%= @order.order_number %></p>
-<p>Order Date:<%= @order.order_date%></p>
-<p>Total:<%=@order.total_amount%></p>
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>Your Line items</h2>
-<table border="1">
-<thead>
-<tr>
-<th>#</th>
-<th>product</th>
-<th>price</th>
-<th>Quantity</th>
-<th>Total</th>
-</tr>
-</thead>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-<tbody>
-<% sum = 0 %>
-<% @order.order_products.each_with_index do |order_product,index|%>
-<tr>
-<td><%=index + 1%></td>
-<td> <%=order_product.product.name%> </td>
-<td><%=order_product.price%></td>
-<td><%=order_product.quantity%></td>
-<% total =order_product.price * order_product.quantity %>
- <td><%= total %>
-<!--
-<%#sum += total %>
-</td> -->
+    header {
+      background-color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
 
-</tr>
-<%end%>
-</tbody>
+    section {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-</table>
+    h2 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tbody tr:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <!-- Add your header content here -->
+    <h1>Your E-Commerce Site</h1>
+  </header>
+
+  <!-- Order Confirmation Section -->
+  <section>
+    <p>Hello <%= @order.user.email %></p>
+    <h2>Your order has been placed</h2>
+    <p>Order #: <%= @order.order_number %></p>
+    <p>Order Date: <%= @order.order_date %></p>
+    <p>Total: <%= @order.total_amount %></p>
+
+    <!-- Order Details Table -->
+    <h2>Your Line items</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% sum = 0 %>
+        <% @order.order_products.each_with_index do |order_product, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= order_product.product.name %></td>
+            <td><%= order_product.price %></td>
+            <td><%= order_product.quantity %></td>
+            <% total = order_product.price * order_product.quantity %>
+            <td><%= total %></td>
+          </tr>
+          <% sum += total %>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</body>
+
+</html>

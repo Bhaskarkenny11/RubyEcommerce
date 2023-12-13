@@ -1,7 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ecommerce</title>
+    
+  
+  
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa; /* Set a light background color */
+      color: #495057;
+    }
+
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff; /* Set your primary color */
+      text-decoration: none;
+    }
+
+    .nav-links {
+      margin-top: 10px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #495057;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+
+    .btn-default {
+      background-color: #007bff;
+      color: #fff;
+      border: 1px solid #007bff;
+    }
+
+    .btn-default:hover {
+      background-color: #0056b3; /* Darker shade on hover */
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="logo"> E-commerce  Project</a>
+    <div class="nav-links">
+    <!--  <a href="#">Home</a> -->
+
+      <title>Ecommerce</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,28 +70,33 @@
     <%= javascript_importmap_tags %>
 
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-  </head>
+    <% if user_signed_in? %>
+    <b> welcome <%= current_user.email %> </b> |  <br/>
+    <% if current_user.is_admin %>
+    <%= link_to "<b>DASHBOARD</b>".html_safe, dashboard_index_path, class: "btn btn-default" %> 
+    <% end %>
+
+    | <b> <%= link_to " <b> Your Cart</b> #{current_user.cart_line_items.length}".html_safe, cart_line_items_path, class: "btn btn-default" %> |  <%= link_to " <b> Your Orders </b>".html_safe, orders_path, class: "btn btn-default" %>  | <%= link_to "<b>Account Setting</b>".html_safe, edit_user_registration_path, class: "btn btn-default" %> | <b> <%= link_to "<b>logout</b>".html_safe, destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "are you sure" }, class: "btn btn-default" %> |   
+   <% else %>
+   <%= link_to "<b>login</b>".html_safe, new_user_session_path, class: "btn btn-default" %> | <%= link_to "<b>Register</b>".html_safe, new_user_registration_path, class: "btn btn-default" %>
+   <% end %>
+
+
+ <%= link_to "<b>categories</b>".html_safe, categories_path, class: "btn btn-default" %> |  <%= link_to "<b>products</b>".html_safe, products_path, class: "btn btn-default" %>
+      <!-- Add more navigation links as needed -->
+    </div>
+  </header>
+
+    </head>
          
   <body>
-  <% if  user_signed_in? %>
-      welcome <%= current_user.email %> | <br/>
-      <%if current_user.is_admin%>
-      <%= link_to "DASHBOARD",dashboard_index_path, class:"btn btn-default"%>
-      <%end%>
 
-      | <%=link_to "Your Cart #{current_user.cart_line_items.length}",cart_line_items_path,class:"btn btn-default"%> | <%=link_to "Your Orders",orders_path,class:"btn btn-default"%> | <%= link_to "Account Setting",edit_user_registration_path,class:"btn btn-default" %> | <%= link_to "logout",destroy_user_session_path,data: {turbo_method: :delete, turbo_confirm: 'are you sure'},class:"btn btn-default" %><br/>
-     <% else %>
-     <%= link_to "login",new_user_session_path ,class:"btn btn-default"%> | <%= link_to"Register",new_user_registration_path,class:"btn btn-default" %><br/>
-     <%end%>
-
-
-   <%= link_to "categories", categories_path ,class:"btn btn-default"%> |  <%= link_to "products", products_path,class:"btn btn-default" %>
  
     
  
  
-  <%=notice%>
-  <%=alert%>
+  <%= notice %>
+  <%= alert %>
 
   
     <%= yield %>
