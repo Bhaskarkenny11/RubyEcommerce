@@ -1,5 +1,77 @@
 <h2>Log in</h2>
+<head>
+<style>
 
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  align-items: center;
+  margin: auto; /* Center the form horizontally */
+  margin-top: 50px; /* Add some top margin if needed */
+  
+}
+
+p {
+  text-align: center; /* Center the text (including links) within the <p> tag */
+}
+
+a {
+  color: #007bff; /* Set link color, adjust as needed */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline; /* Add underline on hover, adjust as needed */
+}
+
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions {
+  text-align: center;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+</style>
+</head>
+<div class="field">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <p><%= f.label :email %></p>

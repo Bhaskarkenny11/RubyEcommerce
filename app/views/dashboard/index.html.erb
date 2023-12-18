@@ -1,18 +1,68 @@
-<h1>Dashboard</h1>
-<h4>Total Categories   :  <%=@categories.length %></h4>
-<h4>Total SubCategories:  <%=@sub_categories.length%></h4>
-<h4>Total Products     :  <%=@products.length%> <%= link_to "export(XLS)",products_path(format: "xls")%></h4>
-<h4>Total Orders       :  <%=@orders.length%></h4>
-<h4>Total Users        :  <%=@users.length%></h4>
-<h4>Total Reviews      :  <%=@reviews.length%></h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Include any additional styles or chart library styles here -->
+  <!-- For example, if you're using Chart.js for the charts -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js"> -->
+  <!-- Add your own styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
 
-<% data_categories={} %>
-<%= @categories.each do |category| 
-  data_categories[category.name] = category.products.length    
-   end %>
-   <%= data_categories %>
-   <%#= pie_chart Yogurt.group(:flavor).count %>
-   <%= pie_chart (data_categories) %>
-   <%=bar_chart (data_categories)%>
-   <%=column_chart (data_categories)%>
-   <%= geo_chart ({"India"=> 100,"Russia"=>250 })%>
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    h4 {
+      color: #555;
+      margin-top: 10px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Add additional styles for charts based on the chart library you're using */
+    /* For example, if you're using Chart.js */
+    /* canvas { max-width: 100%; height: auto; } */
+  </style>
+</head>
+<body>
+
+  <h1>Dashboard</h1>
+
+  <h4>Total Categories: <%= @categories.length %></h4>
+  <h4>Total SubCategories: <%= @sub_categories.length %></h4>
+  <h4>Total Products: <%= @products.length %> <%= link_to "Export(XLS)", products_path(format: "xls") %></h4>
+  <h4>Total Orders: <%= @orders.length %></h4>
+  <h4>Total Users: <%= @users.length %></h4>
+  <h4>Total Reviews: <%= @reviews.length %></h4>
+
+  <% data_categories = {} %>
+  <% @categories.each do |category| %>
+    <% data_categories[category.name] = category.products.length %>
+  <% end %>
+
+  <!-- Visualization Charts -->
+  <%= pie_chart(data_categories) %>
+  <%= bar_chart(data_categories) %>
+  <%= column_chart(data_categories) %>
+  <%= geo_chart({ "India" => 100, "Russia" => 250 }) %>
+
+  <!-- Additional content or charts can be added as needed -->
+
+</body>
+</html>

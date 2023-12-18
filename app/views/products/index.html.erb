@@ -82,8 +82,15 @@
 
           <div class="product-info">
             <%= link_to product.name, product_path(product.id) %>
-            <p>INR <%= product.price %> --<%= product.category_id %></p>
-            <%= link_to "delete", product_path(product), data: { turbo_method: :delete, turbo_confirm: "are you sure" } %>
+            <p>INR <%= product.price %> <!-- --<%= product.category_id %> --></p>
+           
+       <!-- add to cart button on products index page uncomment if you want and refer index action in controller 
+            <%= form_for @cart_line_item do |f| %>
+              <%= f.label :quantity %><br/>
+                    <%= f.select :quantity, [1, 2, 3, 4, 5] %>
+                    <%= f.hidden_field :product_id, value: product.id %><br/>                      <%= f.submit "Add To Cart" %>
+                    <% end %>  -->
+            <button type="button" class="btn btn-outline-success"> <%= link_to "delete", product_path(product), data: { turbo_method: :delete, turbo_confirm: "are you sure" } %> </button>
             <button type="button" class="btn btn-outline-success"><%= link_to "edit", edit_product_path(product.id) %></button>
           </div>
         </li>

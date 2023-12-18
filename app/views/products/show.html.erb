@@ -69,6 +69,19 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
+       
+      table {
+          border: 1px solid #e0e0e0; /* Use a light color for the border, adjust the color code as needed */
+          border-collapse: collapse;
+          width: 100%;
+         }
+
+      th, td {
+          border: 1px solid #e0e0e0; /* Use a light color for the border, adjust the color code as needed */
+          padding: 8px;
+          text-align: left;
+      }
+      
     </style>
   </head>
   <body>
@@ -113,26 +126,32 @@
         <% end %>
         <table border="none" cellspacing=2 cellpadding=4  >
          <tr> 
-           <th> price </th>
+           <th> Price </th>
            <th> Discrption </th>
            <th> Code_eligibility </th>
            <th> Category_id </th>
+           <th> Stock </th>
+           <th>Category</th>
+           <th>Sub_category</th>
          </tr>
          <tr> 
          <td> <%= @product.price %>  </td>
          <td> <%= @product.descrption %>  </td>
          <td> <%= @product.code_eligibility %></td>
          <td> <%= @product.category_id %> </td>
+         <td> <%= @product.stock %> </td>
+         <td> <%= Category.find(@product.category_id).name %></td>
+         <td><%= @product.sub_category.name %></td>
        </tr>
          </table>
-        <!-- Other product details go here -->
+        <!-- Other product details go here 
         <p>Price: <%= @product.price %></p>
         <p>Description: <%= @product.descrption %></p>
         <p>Code_eligibility : <%= @product.code_eligibility %></p>
         <p>Category_id: <%= @product.category_id %></p>
         <p>Stock: <%= @product.stock %></p>
         <p>Category  : <%= Category.find(@product.category_id).name %></p>
-        <p> Sub Category: <%= link_to @product.sub_category.name %> </p> 
+        <p> Sub Category: <%= link_to @product.sub_category.name %> </p> -->
         <!-- Add more details as needed -->
       </div>
 
