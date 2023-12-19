@@ -1,10 +1,57 @@
-<h1>Editing address</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Address</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-<%= render "form", address: @address %>
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-<br>
+    a {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
 
-<div>
-  <%= link_to "Show this address", @address %> |
-  <%= link_to "Back to addresses", addresses_path %>
-</div>
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Editing Address</h1>
+
+  <%= render "form", address: @address %>
+
+  <br>
+
+  <div class="actions">
+    <%= link_to "Show this address", @address %>
+    <%= link_to "Back to addresses", addresses_path %>
+  </div>
+
+</body>
+</html>

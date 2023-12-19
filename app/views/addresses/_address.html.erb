@@ -1,17 +1,57 @@
-<div id="<%= dom_id address %>">
-  <p>
-    <strong>User:</strong>
-    <%= address.user_id %>
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Details</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-  <p>
-    <strong>Street:</strong>
-    <%= address.street %>
-  </p>
+    #<%= dom_id address %> {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-  <p>
-    <strong>City:</strong>
-    <%= address.city %>
-  </p>
+    p {
+      margin: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
 
-</div>
+    strong {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="<%= dom_id address %>">
+    <p>
+      <strong>User:</strong>
+      <%= address.user_id %>
+    </p>
+
+    <p>
+      <strong>Street:</strong>
+      <%= address.street %>
+    </p>
+
+    <p>
+      <strong>City:</strong>
+      <%= address.city %>
+    </p>
+  </div>
+
+</body>
+</html>
