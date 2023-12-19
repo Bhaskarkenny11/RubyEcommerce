@@ -1,43 +1,89 @@
-<h2>your order has been placed</h2>
-<p>Order : #<%= @order.order_number %></p>
-<p>Order Date:<%= @order.order_date %></p>
-<p>Total:<%= @order.total_amount %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Delivered</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-<h2>Your Cart Line items</h2>
-<table class="table",border="1">
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    tbody td {
+      vertical-align: middle;
+    }
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Your Order Has Been Placed</h2>
+  <p>Order: #<%= @order.order_number %></p>
+  <p>Order Date: <%= @order.order_date %></p>
+  <p>Total: <%= @order.total_amount %></p>
+
+  <h2>Your Cart Line Items</h2>
+  <table>
     <thead>
-        <tr>
-            <th> # </th>
-            <th>product</th>
-            <th>price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-        </tr>
+      <tr>
+        <th>S.NO</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
     </thead>
-
     <tbody>
-        <% sum = 0 %>
-        <% @order.order_products.each_with_index do |order_product, index| %>
+      <% @order.order_products.each_with_index do |order_product, index| %>
         <tr>
-            <td><%= index + 1 %></td>
-            <td> <%= order_product.product.name %> </td>
-            <td><%= order_product.price.to_i %></td>
-            <td><%= order_product.quantity %></td>
-             <td>
-             <% total = order_product.price.to_i * order_product.quantity %>
-            <td><%= total.to_i %>
-            <p><% if order_product.product.image_url.attached? %>
-            
-              <%= image_tag rails_blob_path(order_product.product.image_url, only_path: true) %>
-              <% else %>  
-               <p>No image available </p>
-              <% end %> </p>
-             </td>
-            
-
+          <td><%= index + 1 %></td>
+          <td><%= order_product.product.name %><br><% if order_product.product.image_url.attached? %>
+            <%= image_tag rails_blob_path(order_product.product.image_url, only_path: true), alt: "Product Image" %>
+          <% else %>  
+            <p>No image available </p>
+          <% end %></td>
+          <td><%= order_product.price.to_i %></td>
+          <td><%= order_product.quantity %></td>
+          <td><%= order_product.price.to_i * order_product.quantity %></td>
         </tr>
-        <% end %>
+      <% end %>
     </tbody>
+  </table>
 
-</table>
-  <!--<b>Total : <%= sum %></b> ->
+</body>
+</html>

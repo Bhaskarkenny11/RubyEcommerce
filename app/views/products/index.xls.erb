@@ -1,20 +1,68 @@
-<table border="1">
-<thead>
-<tr>
-<th> # </th>
-<th>Name</th>
-<th>Price</th>
-<th>Category</th>
-</tr>
-</thead>
-<tbody >
-<%@products.each_with_index do |product,index| %>
-<tr>
-<td> <%= index + 1%></td>
-<td> <%=product.name%></td>
-<td> <%= product.price%></td>
-<td> <%= product.category.name%></td>
-</tr>
-<%end%>
-</tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Table</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each_with_index do |product, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td>
+          <td><%= product.category.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</body>
+</html>

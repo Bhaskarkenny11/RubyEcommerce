@@ -1,6 +1,6 @@
 
 <h2>Orders for <%= Date::MONTHNAMES[Time.now.month] %></h2>
- <% @orders= current_user.orders %>
+ <% @orders = current_user.orders %>
 
 <% if @orders.any? %>
   <table class="table">
@@ -9,7 +9,7 @@
         <th>Order ID</th>
         <th>Order Date</th>
         <th>Order Number</th>
-        <th> Order Nmae</th>
+        <!--<th> Order Nmae</th>-->
         <!-- Add more headers for additional details -->
       </tr>
     </thead>
@@ -17,8 +17,8 @@
       <% @orders.each do |order| %>
         <tr>
           <td><%= order.id %></td>
-          <td><%= order.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-           <td> <%=order.order_number%> </td> 
+          <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+           <td> <%= order.order_number %> </td> 
            
           <!-- Add more cells for additional details -->
         </tr>
