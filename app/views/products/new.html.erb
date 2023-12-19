@@ -1,42 +1,128 @@
-<h2>Add Product</h2>
-<%= form_with(model: @product, data: { turbo: false }) do |f| %>
-<%#= form_for @product do |f| %>
-<% if @product.errors.any? %>
-<%# <%binding.pry%>
-<h3>ERRORS</h3>
-<ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #87CEEB, #FFA500);
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
 
-<% @product.errors.full_messages.each do |msg| %>
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-<li><%= msg %></li>
-<%end%>
-</ul>
-<%end%>
+    form {
+      background: linear-gradient(to right, #87CEEB, #FFA500);
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-<%= f.label :name %> <br/>
-<%= f.text_field :name %><br/>
+    h3 {
+      color: #d9534f; /* Error message color */
+    }
 
- <%= f.label :descrption %><br/>
- <%= f.text_area :descrption %><br/>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      color: #d9534f; /* Error message color */
+    }
 
- <%= f.label :category_id %><br/>
- <%= f.collection_select :category_id,Category.all, :id,:formatted_name, prompt: "Select Category" %><br/>
+    li {
+      margin-bottom: 5px;
+    }
 
-<%= f.label :sub_category_id %><br/>
- <%= f.collection_select :sub_category_id,SubCategory.all, :id,:name, prompt: "Select Category" %><br/>
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
 
-  <%= f.label :stock %><br/>
- <%= f.text_field :stock %><br/>
+    input[type="text"],
+    textarea,
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
 
-  <%= f.label :code_eligibility %>
- <%= f.check_box :code_eligibility %><br/>
+    input[type="checkbox"] {
+      margin-bottom: 10px;
+    }
 
-  <%= f.label :price %><br/>
-<%=f.number_field :price%><br/>
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
- <%= f.label :image_url %><br/>
-<%=f.file_field :image_url%><br/>
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
 
-<%= f.submit %>
+  <h2>Add Product</h2>
 
-<% end %>
+  <%= form_with(model: @product, data: { turbo: false }) do |f| %>
+    <% if @product.errors.any? %>
+      <h3>Errors:</h3>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <form>
+      <%= f.label :name %> <br/>
+      <%= f.text_field :name %><br/>
+
+      <%= f.label :descrption %><br/>
+      <%= f.text_area :descrption %><br/>
+
+      <%= f.label :category_id %><br/>
+      <%= f.collection_select :category_id, Category.all, :id, :formatted_name, prompt: "Select Category" %><br/>
+
+      <%= f.label :sub_category_id %><br/>
+      <%= f.collection_select :sub_category_id, SubCategory.all, :id, :name, prompt: "Select SubCategory" %><br/>
+
+      <%= f.label :stock %><br/>
+      <%= f.text_field :stock %><br/>
+
+      <%= f.label :code_eligibility %><br/>
+      <%= f.check_box :code_eligibility %><br/>
+
+      <%= f.label :price %><br/>
+      <%= f.number_field :price %><br/>
+
+      <%= f.label :image_url %><br/>
+      <%= f.file_field :image_url %><br/>
+       <br>
+      <%= f.submit %>
+    </form>
+
+  <% end %>
+
+</body>
+</html>

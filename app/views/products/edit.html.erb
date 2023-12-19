@@ -1,51 +1,142 @@
-<h2>Edit Product</h2>
-<%= form_with(model: @product, data: { turbo: false }) do |f| %>
-<%# <%= form_for @product do |f| %> 
-<% if @product.errors.any? %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #feBdc6, #fed1c7);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-<%# <%binding.pry%> 
-<h3>ERRORS</h3>
-<ul>
-<%=@product.errors.full_messages.each do |msg|%>
-<%#binding.pry%>
-<li> <%= msg %> </li>
-<%#binding.pry%>
-<%end%>
-</ul>
-<%end%>
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-<%#= f.label :name%><br>
-<%#= f.text_field :name%><br>
-<%#= f.submit%>
-<%#=link_to"back",product_path%>
-<%#=link_to"list",products_path%>
-<%#end%>
-<%= f.label :name %> <br/>
-<%= f.text_field :name %><br/>
+    form {
+      background: linear-gradient(to right, #feBdc6, #fed1c7);
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    }
 
- <%= f.label :descrption %><br/>
- <%= f.text_area :descrption %><br/>
+    h3 {
+      color: #d9534f; /* Error message color */
+    }
 
- <%= f.label :category_id %><br/>
- <%= f.collection_select :category_id,Category.all, :id,:name, prompt: "Select Category" %><br/>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      color: #d9534f; /* Error message color */
+    }
 
- <%=f.label :sub_category_id %><br/>
- <%=f.collection_select :sub_category_id,SubCategory.all, :id,:name, prompt: "Select SubCategory" %><br/>
+    li {
+      margin-bottom: 5px;
+    }
 
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
 
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
 
-  <%= f.label :stock %><br/>
- <%= f.text_field :stock %><br/>
+    input[type="checkbox"] {
+      margin-bottom: 10px;
+    }
 
-  <%= f.label :code_eligibility %>
- <%= f.check_box :code_eligibility %><br/>
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-  <%= f.label :price %><br/>
-<%=f.text_field :price%><br/>
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
 
- <%= f.label :image_url %><br/>
-<%=f.file_field :image_url%><br/>
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #333;
+      text-decoration: none;
+    }
 
-<%= f.submit %>
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-<% end %>
+  <h2>Edit Product</h2>
+
+  <%= form_with(model: @product, data: { turbo: false }) do |f| %>
+    <% if @product.errors.any? %>
+      <h3>Errors:</h3>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <form>
+      <%= f.label :name %> <br/>
+      <%= f.text_field :name %><br/>
+
+      <%= f.label :descrption %><br/>
+      <%= f.text_area :descrption %><br/>
+
+      <%= f.label :category_id %><br/>
+      <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category" %><br/>
+
+      <%= f.label :sub_category_id %><br/>
+      <%= f.collection_select :sub_category_id, SubCategory.all, :id, :name, prompt: "Select SubCategory" %><br/>
+
+      <%= f.label :stock %><br/>
+      <%= f.text_field :stock %><br/>
+
+      <%= f.label :code_eligibility %><br/>
+      <%= f.check_box :code_eligibility %><br/>
+
+      <%= f.label :price %><br/>
+      <%= f.text_field :price %><br/>
+
+      <%= f.label :image_url %><br/>
+      <%= f.file_field :image_url %><br/>
+        <br>
+      <%= f.submit %>
+    
+    </form>
+
+  <% end %>
+ 
+  <%= link_to "Back", product_path, class: "back-link" %>
+
+</body>
+</html>
