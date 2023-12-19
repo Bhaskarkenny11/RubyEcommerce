@@ -1,16 +1,93 @@
-<h2> <%= @category.name %> </h2>
-<% @category.sub_categories.each do |sub_category|%>
-  <h3><%= sub_category.name.upcase%><h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @category.name %></title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h2, h3 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      width:300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      padding: 10px;
+      transition: box-shadow 0.3s;
+    }
+
+    li:hover {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .back-link, .edit-link, .delete-link {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-right: 10px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .back-link:hover, .edit-link:hover, .delete-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2><%= @category.name %></h2>
+
+  <% @category.sub_categories.each do |sub_category| %>
+    <h3><%= sub_category.name.upcase %></h3>
     <ul>
-        <% sub_category.products.each do |product|%>
-            <li>
-                <%= link_to product.name ,product_path(product.id)%>
-            </li>
-        <%end%>
+      <% sub_category.products.each do |product| %>
+        <li>
+          <%= link_to product.name, product_path(product.id) %>
+        </li>
+      <% end %>
     </ul>
-<%end%>
-<%= link_to "Back", categories_path %> <%= link_to "edit",edit_category_path(@category.id)%> | 
-<%= link_to 'delete', category_path(@category.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'} %>
+  <% end %>
 
+  <div class="actions">
+    <%= link_to "Back", categories_path, class: "back-link" %>
+    <%= link_to "Edit", edit_category_path(@category.id), class: "edit-link" %>
+    <%= link_to "Delete", category_path(@category.id), class: "delete-link", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  </div>
 
+</body>
+</html>
 

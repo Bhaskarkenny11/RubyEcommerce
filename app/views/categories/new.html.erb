@@ -1,18 +1,93 @@
-<h2>ADD CATEGORY</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Category</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
 
-<% @category.errors.full_messages %>
-<%= form_for @category do |f| %>
-  <% if @category.errors.any?%>
-    <ul>
-      <% @category.errors.full_messages.each  do |msg| %>
-        <li> <%= msg %> </li>
-      <% end %>
-  </ul>
-<%end%>
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+      color: #d9534f; /* Error message color */
+    }
 
-<%=f.label :name %> <br/>
-<%= f.text_field :name %> <br/>
-<%= f.submit%>
-<% end %>
+    li {
+      margin-bottom: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ADD CATEGORY</h2>
+
+  <%= form_for @category do |f| %>
+    <% if @category.errors.any? %>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <label for="category_name">Category Name</label>
+    <%= f.text_field :name, id: "category_name" %>
+
+    <%= f.submit "Add Category" %>
+
+  <% end %>
+
+</body>
+</html>
