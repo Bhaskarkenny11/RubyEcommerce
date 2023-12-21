@@ -8,12 +8,13 @@ ruby "3.0.2"
 
 gem "faker"
 gem "pry"
-gem 'turbo-rails'
+gem "turbo-rails"
 gem "chartkick"
-gem 'image_processing', '~> 1.2'
-gem 'rufo'
-gem 'hotwire-rails', '~> 0.1.3'
-gem 'razorpay'
+gem "image_processing", "~> 1.2"
+gem "rufo"
+gem "hotwire-rails", "~> 0.1.3"
+gem "razorpay"
+gem "pg"
 
 # gem "devise", "~> 4.9"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -21,6 +22,8 @@ gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
+# source "https://rubygems.org/"
+# gem "pg", "~> 1.5.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -81,6 +84,4 @@ group :test do
   gem "webdrivers"
 end
 
-
-
-gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
