@@ -14,7 +14,7 @@ gem "image_processing", "~> 1.2"
 gem "rufo"
 gem "hotwire-rails", "~> 0.1.3"
 gem "razorpay"
-#gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 1.4"
 
 # gem "devise", "~> 4.9"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
