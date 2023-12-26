@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_26_132953) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_28_064118) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,14 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_132953) do
     t.integer "address_id"
   end
 
-  create_table "post_versions", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.text "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_post_versions_on_post_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "descrption"
@@ -102,7 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_132953) do
     t.datetime "updated_at", null: false
     t.integer "sub_category_id"
     t.string "Product_code"
-    t.string "image"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -140,5 +131,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_132953) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "post_versions", "posts"
 end
