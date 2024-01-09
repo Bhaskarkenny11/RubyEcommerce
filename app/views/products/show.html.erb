@@ -186,7 +186,7 @@
         <h2>Add Review</h2>
         <%= form_for @review do |f| %>
           <!-- Your review form fields go here -->
- <%= f.label :rating %><br/>
+        <%= f.label :rating %><br/>
          <%= f.radio_button :rating, 1 %>1
          <%= f.radio_button :rating, 2 %>2
          <%= f.radio_button :rating, 3 %>3
@@ -198,20 +198,24 @@
 
          <%= f.label :body %><br/>
          <%= f.text_area :body %><br/>
+         <% if user_signed_in? && current_user.id %>
+             <%= f.label :product_id %>
+             <%= f.hidden_field :product_id, value: @product.id %> : <%= @product.name %><br/>
              
-             <%= f.label :product_id %><br/>
-             <%= f.collection_select :product_id, Product.all, :id, :name %> <br/>
-             <%= f.label :user_id %><br/>
-             <%= f.collection_select :user_id, User.all, :id, :email %><br/>
-          
-
+             <!--<%= f.collection_select :product_id, Product.all, :id, :name %> <br/>-->
+             <%= f.label :user_id %>
+            <%= f.hidden_field :user_id, value: current_user.id %> : <%= current_user.email %> </br>
+            
+             <!-- <%= f.collection_select :user_id, User.all, :id, :email %><br/> -->
+           <% end %>
 
           <%= f.submit %>
         <% end %>
       </div>
+      <!-- Back Link -->
+    <%= link_to "Back", products_path %>
     </section>
 
-    <!-- Back Link -->
-    <%= link_to "Back", products_path %>
+    
   </body>
 </html>
