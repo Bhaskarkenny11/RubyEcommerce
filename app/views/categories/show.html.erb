@@ -84,9 +84,11 @@
 
   <div class="actions">
     <%= link_to "Back", categories_path, class: "back-link" %>
+    <% if user_signed_in? && current_user.is_admin %>
     <%= link_to "Edit", edit_category_path(@category.id), class: "edit-link" %>
     <%= link_to "Delete", category_path(@category.id), class: "delete-link", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-  </div>
+     <% end %>
+    </div>
 
 </body>
 </html>
