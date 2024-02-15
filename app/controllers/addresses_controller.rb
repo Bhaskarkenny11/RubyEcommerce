@@ -15,7 +15,6 @@ class AddressesController < ApplicationController
     @address = Address.new
     @address.user_id = current_user.id
   end
-
   # GET /addresses/1/edit
   def edit
   end
