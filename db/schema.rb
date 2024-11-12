@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_28_064118) do
     t.datetime "updated_at", null: false
     t.integer "sub_category_id"
     t.string "Product_code"
+    t.string "image"
   end
 
   create_table "reviews", force: :cascade do |t|
