@@ -6,12 +6,13 @@ class CategoriesController < ApplicationController
       @categories = Category.all
     end
 
-  def new
-    @category = Category.new
-  end
+ def new
+  @category = Category.new
+  @category.sub_categories.build
+end
   # ______________________________
     def create
-     @category=Category.new(params[:category].permit(:name))
+     @category=Category.new(category_params)
       #binding.pry
         if @category.save
          redirect_to categories_path, notice:"successfuly created #{@category.name} "
@@ -29,11 +30,12 @@ class CategoriesController < ApplicationController
 
  def edit
   @category= Category.find(params[:id])
+   @category.sub_categories.build if @category.sub_categories.empty?
  end
 #  binding.pry
   def update
   @category= Category.find(params[:id]) 
-    if @category.update(params[:category].permit(:name))
+    if @category.update(category_params)
     # binding.pry
     redirect_to category_path(@category.id), notice:"successfuly updated #{@category.name} "
     else
@@ -46,6 +48,14 @@ class CategoriesController < ApplicationController
     @category.destroy
     redirect_to categories_path, notice:"successfuly destroyed"
   end 
+
+  private
+def category_params
+  params.require(:category).permit(
+    :name,
+    sub_categories_attributes: [:id, :name,:_destroy]
+  )
+end
 
 end
  

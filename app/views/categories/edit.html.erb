@@ -106,7 +106,16 @@
     <label for="category_name">Category Name</label>
     <%= f.text_field :name, id: "category_name" %>
 
+     <h3>Subcategories</h3>
+       <%= f.fields_for :sub_categories do |sc| %>
+    <div style="margin-bottom:10px;">
+      <%= sc.text_field :name %>
+      
+    </div>
+     <% end %>
+
     <%= f.submit "Update Category" %>
+   
 
   <% end %>
 
